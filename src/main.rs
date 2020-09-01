@@ -152,7 +152,7 @@ async fn run(opts: RunOpts) -> Result<(), Box<dyn std::error::Error>> {
         addr: cloud_addr.clone(),
         ver_key: vk,
     }];
-    let block_interval = 6;
+    let block_interval = 6000; // ms
     let overcloud = Overcloud::new(
         cloud_addr,
         sk,
