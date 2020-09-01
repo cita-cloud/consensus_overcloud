@@ -45,7 +45,7 @@ impl CloudCrypto {
     pub fn new(sig_key: SigKey, voter_infos: HashMap<Address, VoterInfo>) -> Self {
         CloudCrypto {
             sig_key,
-            threshold: voter_infos.len() / 2 + 1,
+            threshold: voter_infos.len() / 3 + 1,
             voter_infos,
         }
     }

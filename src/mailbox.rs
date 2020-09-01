@@ -190,13 +190,14 @@ impl<T: Letter> Mailbox<T> {
         use Mail::*;
         match mail {
             ToMe { origin, mail } => match mail {
-                MyMail::Normal { msg, .. } => {
+                MyMail::Normal { msg, reply_tx } => {
                     let from = msg.from();
                     let to = msg.to();
                     if to.is_none() || to.as_ref() == Some(&self.local_addr) {
                         self.mailbook.insert(from, origin);
                         self.send_to.send(msg).unwrap();
                     }
+                    reply_tx.send(Ok(())).unwrap();
                 }
             },
             ToController(m) => {
